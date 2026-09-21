@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Victor Bandeira — Analista de Dados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1720;
+    --bg-2:#16212c;
+    --ink:#e9eef2;
+    --ink-dim:#8fa0ad;
+    --line:#28353f;
+    --accent:#3aa0ff;
+    --accent-soft:#215480;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  :root:not([data-theme="dark"]) [data-light-only]{display:none}
+  html[data-theme="light"]{
+    --bg:#eef3f8;
+    --bg-2:#e0eaf2;
+    --ink:#12202b;
+    --ink-dim:#4c6272;
+    --line:#c7d6e1;
+    --accent:#0a66c2;
+    --accent-soft:#8fbde8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-weight:300;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:min(1120px,92vw);margin:0 auto}
+  a{color:inherit}
+  ::selection{background:var(--accent);color:var(--bg)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:1.5rem;padding:.9rem 0}
+  .brand{font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:-.01em;text-decoration:none}
+  .navlinks{margin-left:auto;display:flex;gap:1.4rem;font-size:.85rem;color:var(--ink-dim)}
+  .navlinks a{text-decoration:none}
+  .navlinks a:hover{color:var(--accent)}
+  #theme{background:none;border:1px solid var(--line);color:var(--ink-dim);border-radius:99px;width:34px;height:34px;cursor:pointer;font-size:.85rem}
+  @media(max-width:720px){.navlinks{display:none}}
+
+  /* hero */
+  header{padding:clamp(4rem,12vh,8rem) 0 4rem;border-bottom:1px solid var(--line)}
+  h1{
+    font-family:var(--serif);font-optical-sizing:auto;
+    font-size:clamp(2.9rem,10vw,7.5rem);line-height:.92;margin:0;
+    font-weight:500;letter-spacing:-.03em;
+  }
+  .roles{font-size:clamp(1rem,2.4vw,1.35rem);color:var(--ink-dim);margin:1.6rem 0 0;font-weight:300}
+  .roles b{font-weight:500;color:var(--ink)}
+  .lede{max-width:56ch;margin:2rem 0 0;font-size:1.05rem;color:var(--ink-dim)}
+  .meter{display:flex;flex-wrap:wrap;gap:0 2.4rem;margin-top:3rem;font-family:var(--mono);font-size:.78rem;color:var(--ink-dim)}
+  .meter span b{color:var(--accent);font-weight:500}
+
+  /* sections */
+  section{padding:clamp(3.5rem,9vh,6rem) 0;border-bottom:1px solid var(--line)}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,4.2vw,2.8rem);letter-spacing:-.02em;margin:0 0 2.5rem;line-height:1.1}
+  .secmeta{font-family:var(--mono);font-size:.75rem;color:var(--ink-dim);margin:0 0 .8rem}
+
+  /* projects */
+  .proj{
+    display:grid;grid-template-columns:1fr 1.4fr;gap:1rem 3rem;
+    padding:2.2rem 0;border-top:1px solid var(--line);align-items:start;
+  }
+  .proj:first-of-type{border-top:none}
+  .proj h3{font-family:var(--serif);font-size:1.5rem;font-weight:500;margin:0;letter-spacing:-.01em}
+  .proj .kicker{font-family:var(--mono);font-size:.72rem;color:var(--accent);margin:.5rem 0 0}
+  .proj p{margin:0 0 1rem;color:var(--ink-dim)}
+  .stack{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1rem;padding:0;list-style:none}
+  .stack li{font-family:var(--mono);font-size:.7rem;color:var(--ink-dim);border:1px solid var(--line);border-radius:99px;padding:.15rem .6rem}
+  .go{font-size:.85rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);padding-bottom:1px}
+  .go:hover{border-color:var(--accent)}
+  @media(max-width:760px){.proj{grid-template-columns:1fr;gap:.8rem}}
+
+  /* skills */
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem}
+  .cols h4{font-family:var(--serif);font-size:1.15rem;font-weight:500;margin:0 0 .3rem}
+  .cols .sub{font-size:.85rem;color:var(--ink-dim);margin:0 0 1rem}
+  .cols ul{list-style:none;padding:0;margin:0;font-size:.92rem;color:var(--ink-dim)}
+  .cols li{padding:.35rem 0;border-bottom:1px solid var(--line)}
+
+  /* process */
+  .steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.8rem}
+  .step{border-top:2px solid var(--accent-soft);padding-top:.9rem}
+  .step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:.72rem;color:var(--accent)}
+  .step h4{font-family:var(--serif);font-weight:500;font-size:1.05rem;margin:.3rem 0 .3rem}
+  .step p{margin:0;font-size:.88rem;color:var(--ink-dim)}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:start}
+  .about p{color:var(--ink-dim);max-width:60ch}
+  .about .pull{font-family:var(--serif);font-size:1.35rem;line-height:1.4;color:var(--ink);font-weight:400}
+  .facts{font-family:var(--mono);font-size:.8rem;color:var(--ink-dim);border-left:1px solid var(--line);padding-left:1.4rem}
+  .facts div{padding:.45rem 0}
+  @media(max-width:760px){.about{grid-template-columns:1fr}.facts{border-left:none;border-top:1px solid var(--line);padding:1rem 0 0}}
+
+  /* contact */
+  .contact{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
+  .contact a{font-family:var(--serif);font-size:clamp(1.3rem,3.5vw,2rem);text-decoration:none;font-weight:500;letter-spacing:-.01em}
+  .contact a:hover{color:var(--accent)}
+  footer{padding:2.5rem 0;font-size:.78rem;color:var(--ink-dim);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Victor Bandeira</a>
+    <div class="navlinks">
+      <a href="#projetos">Projetos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#stack">Stack</a>
+      <a href="#processo">Processo</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <button id="theme" aria-label="Alternar tema">◐</button>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <h1>Dados que<br>viram decisão</h1>
+    <p class="roles"><b>Analista de Dados</b> — SQL, Python, Power BI</p>
+    <p class="lede">Pego bases grandes e bagunçadas, limpo, modelo e entrego a resposta em um painel que alguém consegue usar na segunda de manhã.</p>
+    <div class="meter">
+      <span><b>5</b> projetos publicados</span>
+      <span><b>240k+</b> registros tratados</span>
+      <span><b>Indaiatuba/SP</b> — presencial ou remoto</span>
+    </div>
+  </div>
+</header>
+
+<section id="projetos">
+  <div class="wrap">
+    <p class="secmeta">Seleção de projetos · 2025—2026</p>
+    <h2>O que eu construí</h2>
+
+    <article class="proj">
+      <div>
+        <h3>R$ 1,35 Milhão Perdidos no Caminho</h3>
+        <p class="kicker">Python · Pandas · Looker Studio</p>
+      </div>
+      <div>
+        <p>Cerca de 100 mil pedidos do e-commerce brasileiro analisados de ponta a ponta. A investigação de atrasos de entrega apontou um impacto de R$ 1,35 milhão em receita associada a rotas e prazos mal calibrados. Projeto desenvolvido em parceria com a Semantix.</p>
+        <ul class="stack"><li>Python</li><li>Pandas</li><li>Looker Studio</li></ul>
+        <a class="go" href="https://github.com/Bandeira1/o-preco-do-atraso">Ver no GitHub</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div>
+        <h3>Decifrando Londres</h3>
+        <p class="kicker">BigQuery · Python · Power BI</p>
+      </div>
+      <div>
+        <p>Pipeline completo sobre dados criminais de Londres: consultas em BigQuery com CTEs, scripts Python para exportação e um dashboard Power BI em tema escuro com formatação condicional para destacar bairros e períodos críticos.</p>
+        <ul class="stack"><li>BigQuery</li><li>SQL</li><li>Python</li><li>Power BI</li></ul>
+        <a class="go" href="https://github.com/Bandeira1/decifrando-londres/tree/master/projeto_london_crime">Ver no GitHub</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div>
+        <h3>O Que 141 Mil Provas Revelam</h3>
+        <p class="kicker">Pipeline · Looker Studio</p>
+      </div>
+      <div>
+        <p>Mais de 141 mil registros de candidatos do estado de São Paulo, integrados a partir de três tabelas e publicados em um dashboard interativo com scorecards de KPI e filtros por região e perfil. Projeto final da formação EBAC.</p>
+        <ul class="stack"><li>Python</li><li>SQL</li><li>Looker Studio</li></ul>
+        <a class="go" href="https://github.com/Bandeira1/o-que-141-mil-provas-revelam">Ver no GitHub</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div>
+        <h3>SQL com Tempero</h3>
+        <p class="kicker">MySQL · Modelagem relacional</p>
+      </div>
+      <div>
+        <p>Banco relacional construído do zero para demonstrar fundamentos: DDL e DML, relacionamentos, JOINs em vários níveis, views e funções. Serve como base de estudo e referência de consultas.</p>
+        <ul class="stack"><li>MySQL</li><li>DDL/DML</li><li>Views</li></ul>
+        <a class="go" href="https://github.com/Bandeira1/sql-com-tempero">Ver no GitHub</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div>
+        <h3>Faro Certo para Vendas</h3>
+        <p class="kicker">Power BI · DAX · Power Query</p>
+      </div>
+      <div>
+        <p>Dashboard de vendas e comportamento de clientes construído com tratamento em Power Query e medidas em DAX, com foco em leitura rápida dos indicadores pelo time comercial.</p>
+        <ul class="stack"><li>Power BI</li><li>DAX</li><li>Power Query</li></ul>
+        <a class="go" href="https://github.com/Bandeira1/faro-certo-para-vendas">Ver no GitHub</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap about">
+    <div>
+      <p class="secmeta">Sobre</p>
+      <p class="pull">Vim do comercial. Passei anos ouvindo perguntas que ninguém conseguia responder com número — e fui atrás das ferramentas para responder.</p>
+      <p>Sou formado em Análise e Desenvolvimento de Sistemas pelo CEUNSP e concluí a formação de Analista de Dados na EBAC. Trabalhei como Analista Comercial na Bandeira Materiais para Construção, onde aprendi que um relatório só vale alguma coisa se quem lê toma uma decisão depois.</p>
+      <p>Hoje trabalho com SQL, Python e Power BI para transformar bases brutas em indicadores que sustentam essas decisões. Busco minha primeira posição formal na área — Analista de Dados Jr., BI ou Analista de Negócios.</p>
+    </div>
+    <div class="facts">
+      <div>Indaiatuba — São Paulo</div>
+      <div>ADS · CEUNSP</div>
+      <div>Analista de Dados · EBAC, 2026</div>
+      <div>Próximo passo: PL-300</div>
+      <div>Aberto a CLT ou PJ</div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <p class="secmeta">Ferramentas</p>
+    <h2>Com o que eu trabalho</h2>
+    <div class="cols">
+      <div>
+        <h4>Dados e consulta</h4>
+        <p class="sub">Da extração ao modelo</p>
+        <ul>
+          <li>SQL — CTEs, window functions</li>
+          <li>MySQL</li>
+          <li>BigQuery</li>
+          <li>Modelagem relacional</li>
+          <li>Otimização com EXPLAIN</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Python</h4>
+        <p class="sub">Limpeza e automação</p>
+        <ul>
+          <li>Pandas</li>
+          <li>Tratamento de dados</li>
+          <li>Exportação CSV / Parquet</li>
+          <li>Pipelines em notebook</li>
+          <li>Airflow (fundamentos)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visualização</h4>
+        <p class="sub">Onde o dado vira resposta</p>
+        <ul>
+          <li>Power BI</li>
+          <li>DAX</li>
+          <li>Power Query</li>
+          <li>Looker Studio</li>
+          <li>Design de indicadores</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="processo">
+  <div class="wrap">
+    <p class="secmeta">Método</p>
+    <h2>Como eu conduzo uma análise</h2>
+    <div class="steps">
+      <div class="step"><h4>Pergunta</h4><p>Entender qual decisão depende desse número.</p></div>
+      <div class="step"><h4>Coleta</h4><p>Levantar as fontes e checar o que existe de fato.</p></div>
+      <div class="step"><h4>Limpeza</h4><p>Nulos, duplicatas, tipos, outliers — antes de qualquer gráfico.</p></div>
+      <div class="step"><h4>Modelagem</h4><p>Estruturar tabelas e métricas que aguentem novas perguntas.</p></div>
+      <div class="step"><h4>Análise</h4><p>Cruzar, comparar, testar a hipótese até ela quebrar ou se sustentar.</p></div>
+      <div class="step"><h4>Entrega</h4><p>Painel e leitura escrita: o que achei e o que fazer com isso.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <p class="secmeta">Contato</p>
+    <h2>Vamos conversar</h2>
+    <div class="contact">
+      <a href="https://github.com/Bandeira1">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">E-mail</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Victor Bandeira</span>
+    <span>Indaiatuba, São Paulo</span>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var btn=document.getElementById('theme');
+    var root=document.documentElement;
+    try{var saved=localStorage.getItem('vb-theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+    btn.addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme');
+      var isLight = cur ? cur==='light' : !window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var next = isLight ? 'dark':'light';
+      root.setAttribute('data-theme',next);
+      try{localStorage.setItem('vb-theme',next);}catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>

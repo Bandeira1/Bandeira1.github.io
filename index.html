@@ -106,7 +106,12 @@
   .about .pull{font-family:var(--serif);font-size:1.35rem;line-height:1.4;color:var(--ink);font-weight:400}
   .facts{font-family:var(--mono);font-size:.8rem;color:var(--ink-dim);border-left:1px solid var(--line);padding-left:1.4rem}
   .facts div{padding:.45rem 0}
-  @media(max-width:760px){.about{grid-template-columns:1fr}.facts{border-left:none;border-top:1px solid var(--line);padding:1rem 0 0}}
+  .timeline{border-left:none;padding-left:0;position:relative}
+  .timeline div{position:relative;padding:.7rem 0 .7rem 1.6rem}
+  .timeline .dot{position:absolute;left:0;top:1.05rem;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+  .timeline .dot-next{background:transparent;border:2px solid var(--accent);box-shadow:none}
+  .timeline div:not(:last-child)::before{content:"";position:absolute;left:4px;top:1.6rem;width:1px;height:calc(100% - .6rem);background:var(--line)}
+  @media(max-width:760px){.about{grid-template-columns:1fr}.facts{border-left:none;border-top:1px solid var(--line);padding:1rem 0 0}.timeline{border-top:none;padding-top:0}}
 
   /* contact */
   .contact{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline}
@@ -139,6 +144,7 @@
       <span><b>5</b> projetos publicados</span>
       <span><b>240k+</b> registros tratados</span>
       <span><b>Indaiatuba/SP</b> — presencial ou remoto</span>
+      <span><b>CLT</b> ou <b>PJ</b></span>
     </div>
   </div>
 </header>
@@ -168,7 +174,7 @@
       <div>
         <p>Pipeline completo sobre dados criminais de Londres: consultas em BigQuery com CTEs, scripts Python para exportação e um dashboard Power BI em tema escuro com formatação condicional para destacar bairros e períodos críticos.</p>
         <ul class="stack"><li>BigQuery</li><li>SQL</li><li>Python</li><li>Power BI</li></ul>
-        <a class="go" href="https://github.com/Bandeira1/decifrando-londres/tree/master/projeto_london_crime">Ver no GitHub</a>
+        <a class="go" href="https://github.com/Bandeira1/decifrando-londres">Ver no GitHub</a>
       </div>
     </article>
 
@@ -178,7 +184,7 @@
         <p class="kicker">Pipeline · Looker Studio</p>
       </div>
       <div>
-        <p>Mais de 141 mil registros de candidatos do estado de São Paulo, integrados a partir de três tabelas e publicados em um dashboard interativo com scorecards de KPI e filtros por região e perfil. Projeto final da formação EBAC.</p>
+        <p>Mais de 141 mil registros de candidatos do ENEM no estado de São Paulo, integrados a partir de três tabelas e publicados em um dashboard interativo com scorecards de KPI e filtros por região e perfil. Projeto final da formação EBAC.</p>
         <ul class="stack"><li>Python</li><li>SQL</li><li>Looker Studio</li></ul>
         <a class="go" href="https://github.com/Bandeira1/o-que-141-mil-provas-revelam">Ver no GitHub</a>
       </div>
@@ -190,7 +196,7 @@
         <p class="kicker">MySQL · Modelagem relacional</p>
       </div>
       <div>
-        <p>Banco relacional construído do zero para demonstrar fundamentos: DDL e DML, relacionamentos, JOINs em vários níveis, views e funções. Serve como base de estudo e referência de consultas.</p>
+        <p>Banco relacional construído do zero para o cardápio de um restaurante, demonstrando fundamentos: DDL e DML, relacionamentos, JOINs em vários níveis, views e funções. Serve como base de estudo e referência de consultas.</p>
         <ul class="stack"><li>MySQL</li><li>DDL/DML</li><li>Views</li></ul>
         <a class="go" href="https://github.com/Bandeira1/sql-com-tempero">Ver no GitHub</a>
       </div>
@@ -216,14 +222,12 @@
       <p class="secmeta">Sobre</p>
       <p class="pull">Vim do comercial. Passei anos ouvindo perguntas que ninguém conseguia responder com número — e fui atrás das ferramentas para responder.</p>
       <p>Sou formado em Análise e Desenvolvimento de Sistemas pelo CEUNSP e concluí a formação de Analista de Dados na EBAC. Trabalhei como Analista Comercial na Bandeira Materiais para Construção, onde aprendi que um relatório só vale alguma coisa se quem lê toma uma decisão depois.</p>
-      <p>Hoje trabalho com SQL, Python e Power BI para transformar bases brutas em indicadores que sustentam essas decisões. Busco minha primeira posição formal na área — Analista de Dados Jr., BI ou Analista de Negócios.</p>
+      <p>Hoje trabalho com SQL, Python e Power BI para transformar bases brutas em indicadores que sustentam essas decisões. Busco oportunidade na posição de Analista de Dados Jr., BI ou Analista de Negócios.</p>
     </div>
-    <div class="facts">
-      <div>Indaiatuba — São Paulo</div>
-      <div>ADS · CEUNSP</div>
-      <div>Analista de Dados · EBAC, 2026</div>
-      <div>Próximo passo: PL-300</div>
-      <div>Aberto a CLT ou PJ</div>
+    <div class="facts timeline">
+      <div><span class="dot"></span>2022 — ADS · CEUNSP</div>
+      <div><span class="dot"></span>2026 — Analista de Dados · EBAC</div>
+      <div><span class="dot dot-next"></span>Próximo passo — PL-300</div>
     </div>
   </div>
 </section>
